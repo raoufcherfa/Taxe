@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-us" layout:decorator="template1" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Entreprises</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+<div layout:fragment="content" class="container">
+
+    <div class="panel panel-primary ">
+        <div class="panel-heading">Liste des entreprises</div>
+        <div class="panel-body">
+            <div class="form-group">
+                <form method="get" th:action="@{/taxes}" id="myForm">
+                    <label>Entreprise:</label>
+                    <label>
+                        <select name="code" onchange="document.getElementById('myForm').onsubmit">
+                            <option th:each="e:${entreprises}" th:text="${e.nom}" th:value="${e.code}"></option>
+                        </select>
+                        <button type="submit" class="btn btn-primary">Chercher</button>
+                    </label>
+                </form>
+            </div>
+            <table class="table table-striped">
+                <tr>
+                    <th>Titre</th>
+                    <th>Date</th>
+                    <th>Montant</th>
+                    <th>Type</th>
+                </tr>
+                <tr th:each="t:${taxes}">
+                    <td th:text="${t.getId()}"></td>
+                    <td th:text="${t.getDateTaxe()}"></td>
+                    <td th:text="${t.getMontant()}"></td>
+                    <td th:text="${t.class.simpleName}"></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+
+</div>
+</body>
+</html>

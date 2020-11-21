@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-us" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Taxes</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a th:href="@{/entreprises}">Entreprises </a>
+                </li>
+                <li>
+                    <a th:href="@{/taxes}"> Taxes</a>
+                </li>
+                <li>
+                    <a th:href="@{/formEntreprise}"> Informations</a>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a th:href="@{/login?logout}" th:text="${#httpServletRequest.getRemoteUser()}">Déconnexion</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<section layout:fragment="content"></section>
+<footer>
+    <div class="navbar navbar-fixed-bottom">
+        <small>@Adresse de votre institution</small>
+    </div>
+</footer>
+</body>
+</html>

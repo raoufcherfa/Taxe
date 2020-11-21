@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-us" layout:decorator="template1" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Entreprises</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div layout:fragment="content" class="container">
+
+    <div class="panel panel-primary ">
+        <div class="panel-heading">Liste des entreprises</div>
+        <div class="panel-body">
+            <div class="container">
+                <form method="get" th:action="@{/entreprises}">
+                    <label>Mot Clé:</label>
+                    <label>
+                        <input th:type="text" name="motCle"/>
+                        <button type="submit" class="btn btn-primary">Chercher</button>
+                    </label>
+                </form>
+            </div>
+            <table class="table table-striped">
+                <tr>
+                    <th>Code</th>
+                    <th>Nom</th>
+                    <th>Raison Sociale</th>
+                    <th>Email</th>
+                </tr>
+                <tr th:each="e:${listEntreprises}">
+                    <td th:text="${e.code}"></td>
+                    <td th:text="${e.nom}"></td>
+                    <td th:text="${e.raisonSociale}"></td>
+                    <td th:text="${e.email}"></td>
+                    <td>
+                    <a th:href="@{/taxes(code=${e.getCode()})}">Taxes</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <ul class="nav nav-pills">
+            <li th:class="${status.index==pageCourante}?'active':''" th:each="p,status:${pages}">
+                <a th:href="@{/entreprises(page=${status.index},motCle=${motCle})}" th:text="${status.index}"></a>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+</body>
+</html>
